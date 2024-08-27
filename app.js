@@ -24,6 +24,13 @@ app.use(
   })
 );
 
+// Handle CORS preflight requests
+app.options('*', cors({
+  origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
