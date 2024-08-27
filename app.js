@@ -16,20 +16,16 @@ import experinceRouter from "./routes/experienceRouter.js";
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 
-app.use(
-  cors({
-    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
-
-// Handle CORS preflight requests
-app.options('*', cors({
+const corsOptions = {
   origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
-}));
+};
+
+app.use(cors(corsOptions));
+
+// Handle CORS preflight requests
+app.options('*', cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
