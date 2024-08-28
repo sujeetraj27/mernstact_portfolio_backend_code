@@ -74,6 +74,8 @@ export const updateSkill = catchAsyncErrors(async (req, res, next) => {
   });
 });
 export const getAllSkills = catchAsyncErrors(async (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', process.env.DASHBOARD_URL);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   const skills = await Skill.find();
   res.status(200).json({
     success: true,

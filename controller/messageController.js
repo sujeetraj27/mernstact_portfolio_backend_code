@@ -29,6 +29,8 @@ export const deleteMessage = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const getAllMessages = catchAsyncErrors(async (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', process.env.DASHBOARD_URL);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   const messages = await Message.find();
   res.status(201).json({
     success: true,

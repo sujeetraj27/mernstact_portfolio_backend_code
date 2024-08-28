@@ -117,6 +117,8 @@ export const deleteProject = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const getAllProjects = catchAsyncErrors(async (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', process.env.DASHBOARD_URL);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   const projects = await Project.find();
   res.status(200).json({
     success: true,

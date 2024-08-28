@@ -114,6 +114,8 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const getUser = catchAsyncErrors(async (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', process.env.DASHBOARD_URL);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   const user = await User.findById(req.user.id);
   res.status(200).json({
     success: true,

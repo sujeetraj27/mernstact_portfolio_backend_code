@@ -31,6 +31,8 @@ export const deleteExperience = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const getAllExperience = catchAsyncErrors(async (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', process.env.DASHBOARD_URL);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   const experience = await Experience.find();
   res.status(200).json({
     success: true,

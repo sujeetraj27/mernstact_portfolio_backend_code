@@ -30,6 +30,8 @@ export const deleteTimeline = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const getAllTimelines = catchAsyncErrors(async (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', process.env.DASHBOARD_URL);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   const timelines = await Timeline.find();
   res.status(200).json({
     success: true,
