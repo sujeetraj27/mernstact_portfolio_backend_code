@@ -21,7 +21,7 @@ const allowedOrigins = ['https://portfiolo-dashboard.netlify.app', 'https://my-p
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (allowedOrigins.includes(origin)) {
+      if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error('Not allowed by CORS'));
@@ -29,6 +29,7 @@ app.use(
     },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'] // Add any custom headers if needed
   })
 );
 
