@@ -16,21 +16,13 @@ import experinceRouter from "./routes/experienceRouter.js";
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 
-const allowedOrigins = [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL];
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: ['https://portfiolo-dashboard.netlify.app', 'https://my-portfilio-dashboard.netlify.app/login'],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json());
