@@ -16,14 +16,36 @@ import experinceRouter from "./routes/experienceRouter.js";
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 
-console.log('Allowed Origins:', process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL);
+// console.log('Allowed Origins:', process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL);
+// app.use(
+//   cors({
+//     origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
+
+const allowedOrigins = [
+  'https://portfolio-sujeet-kumar.netlify.app',
+  'https://my-portfilio-dashboard.netlify.app'
+];
+
 app.use(
   cors({
-    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+    origin: (origin, callback) => {
+      console.log('Origin:', origin);
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.error('Blocked by CORS:', origin);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
 
 
 app.use(cookieParser());
