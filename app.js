@@ -16,6 +16,7 @@ import experinceRouter from "./routes/experienceRouter.js";
 const app = express();
 dotenv.config({ path: "./config/config.env" });
 
+console.log('Allowed Origins:', process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL);
 app.use(
   cors({
     origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
