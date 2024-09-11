@@ -17,37 +17,44 @@ const app = express();
 dotenv.config({ path: "./config/config.env" });
 
 // console.log('Allowed Origins:', process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL);
+app.use(
+  cors({
+    origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Cache-Control",
+      "Expires",
+      "Pragma",
+    ],
+    credentials: true,
+  })
+);
+
+// const allowedOrigins = [
+//   'https://portfolio-sujeet-kumar.netlify.app',
+//   'https://my-portfilio-dashboard.netlify.app'
+// ];
+
 // app.use(
 //   cors({
-//     origin: [process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL],
+//     origin: (origin, callback) => {
+//       console.log('Origin:', origin);  // Log the origin to debug
+//       if (!origin) {
+//         // Allow requests with no origin (same-origin, Postman, etc.)
+//         callback(null, true);
+//       } else if (allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         console.error('Blocked by CORS:', origin);
+//         callback(new Error('Not allowed by CORS'));
+//       }
+//     },
 //     methods: ["GET", "POST", "PUT", "DELETE"],
 //     credentials: true,
 //   })
 // );
-
-const allowedOrigins = [
-  'https://portfolio-sujeet-kumar.netlify.app',
-  'https://my-portfilio-dashboard.netlify.app'
-];
-
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      console.log('Origin:', origin);  // Log the origin to debug
-      if (!origin) {
-        // Allow requests with no origin (same-origin, Postman, etc.)
-        callback(null, true);
-      } else if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.error('Blocked by CORS:', origin);
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
 
 
 
