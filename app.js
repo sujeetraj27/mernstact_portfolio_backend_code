@@ -19,6 +19,7 @@ dotenv.config({ path: "./config/config.env" });
 // console.log('Allowed Origins:', process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL);
 app.use(
   cors({
+    credentials: true
     // origin: [
     //   'https://portfolio-sujeet-kumar.netlify.app', 
     //   'https://my-portfilio-dashboard.netlify.app'
