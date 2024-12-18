@@ -21,7 +21,7 @@ app.use(
   cors({
     credentials: true,
     origin: [
-      'https://portfolio-sujeet-kumar.netlify.app', 
+      'https://portfiolo-dashboard.netlify.app', 
       'https://my-portfilio-dashboard.netlify.app'
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
