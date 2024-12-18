@@ -19,19 +19,19 @@ dotenv.config({ path: "./config/config.env" });
 // console.log('Allowed Origins:', process.env.PORTFOLIO_URL, process.env.DASHBOARD_URL);
 app.use(
   cors({
-    origin: [
-      'https://portfolio-sujeet-kumar.netlify.app', 
-      'https://my-portfilio-dashboard.netlify.app'
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Cache-Control",
-      "Expires",
-      "Pragma",
-    ],
-    credentials: true,
+    // origin: [
+    //   'https://portfolio-sujeet-kumar.netlify.app', 
+    //   'https://my-portfilio-dashboard.netlify.app'
+    // ],
+    // methods: ["GET", "POST", "PUT", "DELETE"],
+    // allowedHeaders: [
+    //   "Content-Type",
+    //   "Authorization",
+    //   "Cache-Control",
+    //   "Expires",
+    //   "Pragma",
+    // ],
+    // credentials: true,
   })
 );
 
